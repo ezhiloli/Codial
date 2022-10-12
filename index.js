@@ -4,9 +4,17 @@ const express = require('express');
 const app = express();
 // 2.Acquire the Port Number
 const port = 8080;
+// 8.for layouts using express-ejs-layouts
+const expressLayouts = require('express-ejs-layouts');
+
+// 9.to tell use this layout before pages going to routing
+app.use(expressLayouts);
 
 // 6.use expres router
 app.use('/',require('./routes'));
+
+// //7.for user profile page
+// app.use('/users/profile',require('./routes'));
 
 //5.setup our view engine
 app.set('view engine','ejs');

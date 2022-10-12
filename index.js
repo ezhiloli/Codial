@@ -1,14 +1,22 @@
 // 1.Require express
 const express = require('express');
+// 12.Require the cookie parser
+const cookieParser = require('cookie-parser')
 // 3.Set up our app points to express
 const app = express();
 // 2.Acquire the Port Number
 const port = 8080;
 // 8.for layouts using express-ejs-layouts
 const expressLayouts = require('express-ejs-layouts');
+
+const db = require('./config/mongoose');
+
 // 11.if any link,src tags inside my views files i want to tell it should go for lauout file 
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
+
+app.use(express.urlencoded());
+app.use(cookieParser());
 
 // 10.setting up static files
 app.use(express.static('./assets'));

@@ -3,6 +3,10 @@
         <title>
             <%= title %>
         </title>
+        <link rel="stylesheet" href="/css/layout.css">
+        <!-- if any link tasgs insode the ejs files other then layout.ejs it will come here -->
+        <%- style %>
+
     </head>
     <body>
 
@@ -13,6 +17,6 @@
         <%- include('_footer'); %>  
 
        
-
+        <%- script %>
     </body>
 </html>

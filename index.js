@@ -6,6 +6,12 @@ const app = express();
 const port = 8080;
 // 8.for layouts using express-ejs-layouts
 const expressLayouts = require('express-ejs-layouts');
+// 11.if any link,src tags inside my views files i want to tell it should go for lauout file 
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
+
+// 10.setting up static files
+app.use(express.static('./assets'));
 
 // 9.to tell use this layout before pages going to routing
 app.use(expressLayouts);

@@ -13,4 +13,8 @@ router.get('/sign-in',userContoller.signIn);
 // routing to sign-up page
 router.get('/sign-up',userContoller.signUp);
 
+router.get('/create',userContoller.create);
+
+router.post('/create',userContoller.create)
+
 module.exports = router;

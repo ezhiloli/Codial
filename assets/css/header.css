@@ -6,7 +6,7 @@ header{
     height: auto;
     padding-top: 1%;
     padding-bottom: 1%;
-    background-color: rgb(32, 127, 95);
+    background-image: linear-gradient(yellow,rgb(187, 10, 203));
     display: flex;
     justify-content: space-around;
 }

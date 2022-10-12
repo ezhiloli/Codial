@@ -5,6 +5,12 @@ const app = express();
 // 2.Acquire the Port Number
 const port = 8080;
 
+// 6.use expres router
+app.use('/',require('./routes'));
+
+//5.setup our view engine
+app.set('view engine','ejs');
+app.set('views','./views'); 
 
 
 // 4.Check weather the App/port is working or not

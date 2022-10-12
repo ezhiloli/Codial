@@ -49,5 +49,33 @@ module.exports.create = function(req,res){
     })
 }
 module.exports.createSession = function(req,res){
+    // 1.find the user
+    User.findOne({email:req.body.email},function(err,user){
+        if(err){
+            console.log('Error while find user');
+            return;
+        }
+
+        if(user){
+
+        // 2.1 handle mismatching passwords
+            if(user.password!=req.body.password){
+                console.log('Mismatching Password');
+                return res.redirect('back');
+            }
+
+            res.cookie('user_id',user.id);
+            return res.redirect('/users/profile')
+
+        }
+        else{
+            
+              // 3.handle user not found 
+              return res.redirect('back');
+        }
+    })
+ 
+
+  
     
 }

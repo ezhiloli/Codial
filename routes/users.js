@@ -17,4 +17,6 @@ router.get('/create',userContoller.create);
 
 router.post('/create',userContoller.create)
 
+router.post('/create-session',userContoller.createSession);
+
 module.exports = router;

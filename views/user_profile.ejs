@@ -1,7 +1,44 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/profile.css">
 
-        <h1>
+<div>
+    <div>
+        <h1 class="app-heading">
             Codial Profile Page
-            <p> Welcome  </p>
         </h1>
+    </div>
+    <div class="profile-body">
 
-   
+        <div class="user-profile">
+
+            <div class="user-image">
+                <img src="/images/men_avatar.jpg" alt="my-image">
+            </div>
+
+        </div>
+        <div class="user-information">
+
+            <!-- <div>
+                <%= locals.user.name %>
+            </div> -->
+            <div>
+                <h2> <%= locals.user.name %>
+                    <i class="fa-solid fa-pen-to-square"></i> </h2>
+            </div>
+            <div>
+                <h2><%= locals.user.email %> 
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </h2>
+            </div>
+            <div>
+                <h2><%= locals.user.password %> 
+                    <i class="fa-solid fa-pen-to-square"></i></h2>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

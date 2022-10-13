@@ -11,6 +11,11 @@ const expressLayouts = require('express-ejs-layouts');
 
 const db = require('./config/mongoose');
 
+// 13.require  express-session
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+
 // 11.if any link,src tags inside my views files i want to tell it should go for lauout file 
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
@@ -24,8 +29,7 @@ app.use(express.static('./assets'));
 // 9.to tell use this layout before pages going to routing
 app.use(expressLayouts);
 
-// 6.use expres router
-app.use('/',require('./routes'));
+
 
 // //7.for user profile page
 // app.use('/users/profile',require('./routes'));
@@ -34,6 +38,26 @@ app.use('/',require('./routes'));
 app.set('view engine','ejs');
 app.set('views','./views'); 
 
+app.use(session({
+    name:'codial',
+    secret:'fhfbg',
+    saveUninitialized:false,
+    resave:false,
+    cookie:{
+        maxAge:(1000 * 60 * 100)
+    }
+}));
+// saveUninitialized : a session which not initialized (user not logged in) dont want to save extra data in cookie
+// resave: Identity is established if we want rewrite or resave same info again
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use(passport.setAuthenticatedUser)
+
+// 6.use expres router
+app.use('/',require('./routes'));
 
 // 4.Check weather the App/port is working or not
 app.listen(port,function(err){

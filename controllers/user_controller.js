@@ -2,35 +2,31 @@ const User = require('../models/user')
 
 module.exports.profile = function(req,res){
 
-    if(req.cookies.user_id){
-
-        User.findById(req.cookies.user_id,function(err,user){
-            if(user){
-                return res.render('user_profile',{
-
-                    title:"Profile Page",
-                    user:user
-                })
-            }
-      
+        return res.render('user_profile',{
+            title:'User Profile'
         })
-
-    }else{
-    return res.redirect('/users/sign-in');
-    }
-    
 }
 
 // user sign up page
 module.exports.signUp = function(req,res){
+
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile')
+    }
+    else{
     return res.render(
         'user_sign_up',{
-        title:'Codial | Signup'
+        title:'Codial | S ignup'
         }
     )
+    }
 }
 // user-sign in page
 module.exports.signIn = function(req,res){
+
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile')
+    }
     return res.render(
         'user_sign_in',{
             title:'Codial | Signin'
@@ -63,32 +59,32 @@ module.exports.create = function(req,res){
 }
 module.exports.createSession = function(req,res){
     // 1.find the user
-    User.findOne({email:req.body.email},function(err,user){
-        if(err){
-            console.log('Error while find user');
-            return;
-        }
+    // User.findOne({email:req.body.email},function(err,user){
+    //     if(err){
+    //         console.log('Error while find user');
+    //         return;
+    //     }
 
-        if(user){
+    //     if(user){
 
-        // 2.1 handle mismatching passwords
-            if(user.password!=req.body.password){
-                console.log('Mismatching Password');
-                return res.redirect('back');
-            }
+    //     // 2.1 handle mismatching passwords
+    //         if(user.password!=req.body.password){
+    //             console.log('Mismatching Password');
+    //             return res.redirect('back');
+    //         }
 
-            res.cookie('user_id',user.id);
-            return res.redirect('/users/profile')
+    //         res.cookie('user_id',user.id);
+    //         return res.redirect('/users/profile')
 
-        }
-        else{
+    //     }
+    //     else{
             
-              // 3.handle user not found 
-              return res.redirect('back');
-        }
-    })
- 
+    //           // 3.handle user not found 
+    //           return res.redirect('back');
+    //     }
+    // })
 
-  
+    return res.redirect('/');
+
     
 }

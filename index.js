@@ -1,7 +1,7 @@
 // 1.Require express
 const express = require('express');
 // 12.Require the cookie parser
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 // 3.Set up our app points to express
 const app = express();
 // 2.Acquire the Port Number
@@ -16,9 +16,9 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 
-// 11.if any link,src tags inside my views files i want to tell it should go for lauout file 
-app.set('layout extractStyles',true);
-app.set('layout extractScripts',true);
+const MongoStore = require('connect-mongo')(session);
+
+
 
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -29,6 +29,12 @@ app.use(express.static('./assets'));
 // 9.to tell use this layout before pages going to routing
 app.use(expressLayouts);
 
+// 11.if any link,src tags inside my views files i want to tell it should go for lauout file 
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
+
+
+
 
 
 // //7.for user profile page
@@ -38,6 +44,7 @@ app.use(expressLayouts);
 app.set('view engine','ejs');
 app.set('views','./views'); 
 
+// mongo store is used to store the session cookie in the db
 app.use(session({
     name:'codial',
     secret:'fhfbg',
@@ -45,7 +52,15 @@ app.use(session({
     resave:false,
     cookie:{
         maxAge:(1000 * 60 * 100)
+    },
+    store:new MongoStore({
+        mongooseConnection:db,
+        autoRemove:'disabled'
+    },
+    function(err){
+        console.log(err || 'connect-mongo setup ok');
     }
+    )
 }));
 // saveUninitialized : a session which not initialized (user not logged in) dont want to save extra data in cookie
 // resave: Identity is established if we want rewrite or resave same info again

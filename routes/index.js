@@ -1,7 +1,7 @@
 // 1.Require Express
-const expres = require('express');
+const express = require('express');
 // 2.Get router middleware
-const router = expres.Router();
+const router = express.Router();
 
 // 3.Gettting default page or home controller
 const homeController = require('../controllers/home_controller');

@@ -12,17 +12,30 @@
             </a>
         </span>
     </div>
+    <% if (locals.user) {%> 
     <div id="welcome-user">
-           <h2 class="h-sections"> Hello User </h2>
+           <h2 class="h-sections"> Hello <%= locals.user.name %> </h2>
     </div>
+
+    <div>
+        <h4 class="h-sections">
+         <a href="/users/sign-out"> Sign out </h4> </a>
+     </div>
+
+     <div>
+        <h4 class="h-sections">  <a href="/users/profile"><%= user.name %> </h4>
+        </a>
+    </div>
+
+
+     <% }else { %>
+
 
     <div>
        <h4 class="h-sections">
         <a href="/users/sign-in"> Sign in </h4> </a>
     </div>
-    <div>
-        <h4 class="h-sections">  <a href="/users/profile">Your-Profile </h4>
-        </a>
-    </div>
+    
+    <% } %>
     
 </header>

@@ -4,6 +4,8 @@ const User = require('../models/user')
 module.exports.profile = function(req,res){
 
         return res.render('user_profile',{
+
+            title:"Codeial Profile Page"
           
         })
 }
@@ -89,13 +91,12 @@ module.exports.createSession = function(req,res){
     
 }
 
-// module.exports.destroySession = function(req,res){
-//     req.logout(function(err){
-//         if(err){
-            
-//         }
-//     });
+module.exports.destroySession = function(req,res){
+    req.logout(function(err) {
+        if (err) { res.redirect('/'); }
+        
+      });
 
-//     return res.redirect('/')
-// }
+    return res.redirect('/')
+}
 

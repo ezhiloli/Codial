@@ -1,9 +1,62 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title> <%= locals.title %></title>
+<html>  
+    <head>
 
-        <div>
-            <h2 style="text-align: center">Codial / <%= title %> </h2>
-        </div>
+        <title> <%= locals.title %></title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+
+</html>
+    
+<div class="home-page">
+    <div class="app-heading">
+        <h2 style="text-align: center"><%= title %> </h2>
+    </div>
+    <div id="feed-post">
+
+        <h3> Make Your Post Here </h3>
+
+        <form action="/posts/create" id="new-post-form" method="POST">
+
+            <textarea  name="content" id="post-section" placeholder="Hey Whats on your Mind ..." rows="3">
+
+            </textarea>
+            <span>
+            <input type="submit" value="POST" id="my-post">
+            </span>
+
+        </form>
+
+    </div>
+
+    <div class="user-post-container">
+
+        <div class="user-inside-container">
+            <h3> Posts List</h3>
+            <ul>
+            <% for (post of posts) { %>
+
+
+                <li>
+                    <div class="user-post-list">
+                        <span>
+                     <%= post.content %> 
+                     <small>
+                      commented by  <a href="/users/profile"><%= post.user.name %>  </a>
+                    </small>
+                </span>
+                    </div>
+                
+                </li>
+
+            <% } %>
+       </ul>
+    </div>
+
+    </div>
+
+</div>
 

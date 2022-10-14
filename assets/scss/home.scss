@@ -1,0 +1,101 @@
+#feed-post  
+{
+    // border: 2px solid black;
+    margin: auto;
+    text-align: center;
+    width: 50%;
+    margin-bottom: 3%;
+    h3{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    margin-top: 3%;
+    margin-bottom: 0px;
+    text-align: center;
+    }
+    #new-post-form{
+        margin: auto;
+        width: 100%;
+       
+        #post-section{
+            border: 2px solid black;
+            font-size: 1.3rem;
+            padding-top: 2%;
+            padding-bottom: 2%;
+            // color: white;
+            background-color:lightgray;
+            width: 100%;
+        }
+       
+        #my-post{
+            text-align: center;
+            width: 15%;
+            padding: 0.8%;
+            font-family: 'Bebas Neue', cursive;
+            background-color: red;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            display: block;
+            margin: auto;
+            margin-top: 5%;
+    
+        }
+    }
+
+}
+.home-page{
+    .app-heading{
+        h2{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 2.2rem;
+        letter-spacing: 0.1rem;
+        }
+    }
+   
+}
+.user-post-container{
+    background-color: black;
+    width: 50%;
+    height: 80%;
+    color: white;
+    // border: 2px solid black;
+    overflow: scroll;
+    margin-top: 3%;
+   
+    margin: auto;
+    border-radius: 1rem;
+    h3{
+        margin-left: 5%;
+    }
+    ul{
+        margin-left: 0px;
+        padding-left: 0px;
+        li{
+            list-style: none;
+            // background-color: white;
+            margin-bottom: 2%;
+            padding:2%;
+            border-radius: 1rem;
+            margin-left: 0px;
+            margin-left: 3%;
+        
+            small{
+                display: block;
+                a{
+                    text-decoration: none;
+                }
+            }
+        }
+        li:hover{
+            background-color: rgb(21, 196, 190);
+        }
+    }
+    h3{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.2rem;
+    }
+
+}
+.user-post-container::-webkit-scrollbar{
+    display: none;
+}

@@ -15,6 +15,8 @@ router.get('/',homeController.home);
 // 6.for user page
 router.use('/users',require('./users'));
 
+router.use('/posts',require('./posts'));
+
 
 console.log('Router Loaded');
 

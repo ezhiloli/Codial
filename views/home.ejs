@@ -44,12 +44,40 @@
 
                 <li>
                     <div class="user-post-list">
-                        <span>
                      <%= post.content %> 
                      <small>
-                      commented by  <a href="/users/profile"><%= post.user.name %>  </a>
+                      post by  <a href="/users/profile"><%= post.user.name %>  </a>
                     </small>
-                </span>
+                    </div>
+                    <div class="post-comments">
+                        <% if(locals.user) {%>
+
+                            <form action="/comments/create" method="POST">
+                                
+                                <input type="text" name="content" placeholder="Type Here to Add Comment ..." required>
+                                <input type="hidden" name="post" value="<%= post._id %>">
+                                <input type="submit" value="Add"> 
+
+                            </form>
+
+                        <% } %>
+
+                        <div class="list-of-comments">
+
+                            <ul id="post-comments-<%= post._id %>">
+
+                                <% for(comment of post.comments) {%>
+
+                                    <p> <%= comment.content %> <br>
+                                        <br> commentted by<small><a href="/users/profile"><%= comment.user.name %> </small> </a>
+                                    </p>
+
+                                <%}%>
+
+                            </ul>
+
+                        </div>
+
                     </div>
                 
                 </li>

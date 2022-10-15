@@ -3,7 +3,7 @@
     // border: 2px solid black;
     margin: auto;
     text-align: center;
-    width: 50%;
+    width: 40%;
     margin-bottom: 3%;
     h3{
     font-family: 'Bebas Neue', cursive;
@@ -18,7 +18,7 @@
        
         #post-section{
             border: 2px solid black;
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             padding-top: 2%;
             padding-bottom: 2%;
             // color: white;
@@ -55,7 +55,7 @@
 }
 .user-post-container{
     background-color: black;
-    width: 50%;
+    width: 40%;
     height: 80%;
     color: white;
     // border: 2px solid black;
@@ -66,6 +66,7 @@
     border-radius: 1rem;
     h3{
         margin-left: 5%;
+        text-align: center;
     }
     ul{
         margin-left: 0px;
@@ -98,4 +99,26 @@
 }
 .user-post-container::-webkit-scrollbar{
     display: none;
+}
+
+.post-comments{
+    form{
+        margin-top: 2%;
+        input{
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid white;
+        }
+        input[type="submit"]{
+            background-color: red;
+            border: none;
+            margin-left: 2%;
+        }
+    }
+    .list-of-comments{
+        p{
+            display: inline-block;
+            margin: 0px;
+        }
+    }
 }

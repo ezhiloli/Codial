@@ -3,11 +3,15 @@ const Post = require('../models/post')
 
 module.exports.profile = function(req,res){
 
-        return res.render('user_profile',{
+        User.findById(req.params.id,function(err,user){
+            return res.render('user_profile',{
 
-            title:"Codeial Profile Page"
-          
+                title:"Codeial Profile Page",
+                profile_user:user
+              
+            })
         })
+       
 }
 
 // user sign up page

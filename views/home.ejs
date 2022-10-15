@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>  
     <head>
-
         <title> <%= locals.title %></title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/home.css">
     </head>
-
 </html>
     
 <div class="home-page">
@@ -17,71 +15,21 @@
     </div>
     <% if(locals.user){ %>
     <div id="feed-post">
-
         <h3> Make Your Post Here </h3>
-
         <form action="/posts/create" id="new-post-form" method="POST">
-
-            <textarea  name="content" id="post-section" placeholder="Hey Whats on your Mind ..." rows="3">
-
-            </textarea>
-            <span>
+            <textarea  name="content" id="post-section" placeholder="Hey Whats on your Mind ..." rows="3"></textarea>
             <input type="submit" value="POST" id="my-post">
-            </span>
-
         </form>
 
     </div>
     <% } %>
 
     <div class="user-post-container">
-
         <div class="user-inside-container">
             <h3> Posts List</h3>
             <ul>
             <% for (post of posts) { %>
-
-
-                <li>
-                    <div class="user-post-list">
-                     <%= post.content %> 
-                     <small>
-                      post by  <a href="/users/profile"><%= post.user.name %>  </a>
-                    </small>
-                    </div>
-                    <div class="post-comments">
-                        <% if(locals.user) {%>
-
-                            <form action="/comments/create" method="POST">
-                                
-                                <input type="text" name="content" placeholder="Type Here to Add Comment ..." required>
-                                <input type="hidden" name="post" value="<%= post._id %>">
-                                <input type="submit" value="Add"> 
-
-                            </form>
-
-                        <% } %>
-
-                        <div class="list-of-comments">
-
-                            <ul id="post-comments-<%= post._id %>">
-
-                                <% for(comment of post.comments) {%>
-
-                                    <p> <%= comment.content %> <br>
-                                        <br> commentted by<small><a href="/users/profile"><%= comment.user.name %> </small> </a>
-                                    </p>
-
-                                <%}%>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-                
-                </li>
-
+                <%- include('_post') -%>
             <% } %>
        </ul>
     </div>
@@ -90,3 +38,18 @@
 
 </div>
 
+<section id="user-friends">
+
+    <h3> Friends </h3>
+
+    <% for(friend of all_users) {%>
+
+        <p>
+            <a href="/users/profile/<%= friend.id %>">
+                    <%= friend.name %>
+            </a>
+        </p>
+
+    <% } %>
+
+</section>

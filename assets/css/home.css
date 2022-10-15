@@ -1,7 +1,7 @@
 #feed-post {
   margin: auto;
   text-align: center;
-  width: 50%;
+  width: 40%;
   margin-bottom: 3%;
 }
 
@@ -20,7 +20,7 @@
 
 #feed-post #new-post-form #post-section {
   border: 2px solid black;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   padding-top: 2%;
   padding-bottom: 2%;
   background-color: lightgray;
@@ -49,7 +49,7 @@
 
 .user-post-container {
   background-color: black;
-  width: 50%;
+  width: 40%;
   height: 80%;
   color: white;
   overflow: scroll;
@@ -60,6 +60,7 @@
 
 .user-post-container h3 {
   margin-left: 5%;
+  text-align: center;
 }
 
 .user-post-container ul {
@@ -95,4 +96,25 @@
 
 .user-post-container::-webkit-scrollbar {
   display: none;
+}
+
+.post-comments form {
+  margin-top: 2%;
+}
+
+.post-comments form input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.post-comments form input[type="submit"] {
+  background-color: red;
+  border: none;
+  margin-left: 2%;
+}
+
+.post-comments .list-of-comments p {
+  display: inline-block;
+  margin: 0px;
 }

@@ -31,7 +31,7 @@
   text-align: center;
 }
 
-.feed-back form input, .feed-back form textarea {
+.feed-back input, .feed-back textarea {
   display: block;
   margin: auto;
   margin-bottom: 4%;

@@ -20,9 +20,10 @@ module.exports.create = function(req,res){
 }
 
 module.exports.destroy = function(req,res){
+    
     Post.findById(req.params.id,function(err,post){
         // .id means objectId into String
-        console.log("REQUEST.PARAMS",req.params);
+      
         if(post.user == req.user.id){
             post.remove();
 

@@ -8,6 +8,8 @@ const userController = require('../controllers/user_controller');
 // routing to profile page
 router.get('/profile/:id',passport.checkAuthentication,userController.profile);
 
+router.post('/update/:id',passport.checkAuthentication,userController.update)
+
 // passport.checkAuthentication,
 // routing to sign-in page
 router.get('/sign-in',userController.signIn);

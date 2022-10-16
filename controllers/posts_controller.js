@@ -1,38 +1,52 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
-module.exports.create = function(req,res){
-    console.log(req.body.content);
 
-  console.log('Request User ID',req.user);
-    Post.create({
-        content:req.body.content,
-        user:req.user._id,
-    },
-        function(err,post){
-        if(err){
-            console.log('error');
-            return;
-        }
-        
-        return res.redirect('back');
 
-    });
+module.exports.create = async function(req,res){
+   
+    try{
+        let post = await Post.create({
+            content:req.body.content,
+            user:req.user._id,
+        });
+
+            if(req.xhr){
+                return res.status(200).json({
+                    data:{
+                        post:post
+                    },
+                    message:"Post Created !!"
+                })
+            }
+            req.flash('success','Post Created');
+            return res.redirect('back');
+    }catch(err){
+        console.log('Error while creainv');
+        return;
+    }
+   
 }
 
-module.exports.destroy = function(req,res){
+module.exports.destroy =async function(req,res){
     
-    Post.findById(req.params.id,function(err,post){
-        // .id means objectId into String
-      
-        if(post.user == req.user.id){
-            post.remove();
+    try{
+        let post = await Post.findById(req.params.id);
+            // .id means objectId into String
+            if(post.user == req.user.id){
+                post.remove();
+    
+                await Comment.deleteMany({post:req.param.id});
 
-            Comment.deleteMany({post:req.param.is},function(err){
-                return res.redirect('back')
-            })
+                req.flash('success',"Post Deleted");
+
+                return res.redirect('back');
+            }
+            else{
+                console.log('Error while deleting Post')
+                return res.redirect('back');
+            }
+        }catch(err){
+            console.log('Error',err);
+            return;
         }
-        else{
-            return res.redirect('back');
-        }
-    })
 }

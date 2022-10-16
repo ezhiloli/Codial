@@ -1,11 +1,20 @@
 const User = require('../models/user')
 const Post = require('../models/post')
 
+
+// 
+//      ********* GLOBAL ERROR FUNCTION
+// 
+
+function errorHandling(err){
+    req.flash('error',err);
+}
+
+
 module.exports.profile = function(req,res){
 
         User.findById(req.params.id,function(err,user){
             return res.render('user_profile',{
-
                 title:"Codeial Profile Page",
                 profile_user:user
               
@@ -17,6 +26,7 @@ module.exports.profile = function(req,res){
 module.exports.update = function(req,res){
     if(req.user.id == req.params.id){
         User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            req.flash('success','Details Updated');
             return res.redirect('back');
         })
     }else{
@@ -28,9 +38,11 @@ module.exports.update = function(req,res){
 module.exports.signUp = function(req,res){
 
     if(req.isAuthenticated()){
+        req.flash('error','Already Signed in! Please Sign out')
         return res.redirect('/users/profile')
     }
     
+    req.flash('success','Account created')
     return res.render(
         'user_sign_up',{
         title:'Codial | S ignup'
@@ -99,7 +111,7 @@ module.exports.createSession = function(req,res){
     //           return res.redirect('back');
     //     }
     // })
-
+    req.flash('success','Loggen in Successfully');
     return res.redirect('/');
 
     
@@ -107,10 +119,9 @@ module.exports.createSession = function(req,res){
 
 module.exports.destroySession = function(req,res){
     req.logout(function(err) {
-        if (err) { res.redirect('/'); }
-        
+        if (err) { }
       });
-
+    req.flash('success','sign out successfully');
     return res.redirect('/')
 }
 

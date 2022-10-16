@@ -20,6 +20,10 @@ const MongoStore = require('connect-mongo')(session);
 
 const sassMiddleware = require('node-sass-middleware');
 
+const flash = require('connect-flash');
+
+const customMiddleware = require('./config/middleware');
+
 app.use(sassMiddleware({
     src:'./assets/scss', //
     dest:'./assets/css',
@@ -27,6 +31,13 @@ app.use(sassMiddleware({
     outputStyle:'expanded',//output is single line or multi line
     prefix:'/css'
 }))
+
+// 
+//      ********* GLOBAL ERROR FUNCTION
+// 
+function errorHandling(err){
+    req.flash('error',err);
+}
 
 
 app.use(express.urlencoded());
@@ -67,7 +78,7 @@ app.use(session({
         autoRemove:'disabled'
     },
     function(err){
-        console.log(err || 'connect-mongo setup ok');
+        errorHandling(err);
     }
     )
 }));
@@ -78,14 +89,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use(passport.setAuthenticatedUser)
+app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMiddleware.setFlash);
 
 // 6.use expres router
 app.use('/',require('./routes'));
 
 // 4.Check weather the App/port is working or not
 app.listen(port,function(err){
-    if(err){console.log(`Error while listening port: ${err}`); return;}
+    if(err){errorHandling(err); return;}
 
     console.log(`server is running on port ::${port}`);
 })
